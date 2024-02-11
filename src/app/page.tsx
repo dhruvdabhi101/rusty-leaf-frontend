@@ -1,12 +1,13 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-col justify-between p-10 dark:bg-black">
             <div className="flex flex-row justify-end">
-                <Button>Sign Up</Button>
+                <Link href={"/register"}><Button>Sign Up</Button></Link>
             </div>
             <div className="flex flex-col justify-center items-center gap-7">
                 <div className="flex flex-col items-center justify-center gap-5">
