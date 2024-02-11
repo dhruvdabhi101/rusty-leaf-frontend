@@ -4,9 +4,9 @@ import Image from "next/image";
 
 export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col justify-between p-20 dark:bg-black">
+        <main className="flex min-h-screen flex-col justify-between p-10 dark:bg-black">
             <div className="flex flex-row justify-end">
-                <Button> Sign Up </Button>
+                <Button>Sign Up</Button>
             </div>
             <div className="flex flex-col justify-center items-center gap-7">
                 <div className="flex flex-col items-center justify-center gap-5">
@@ -19,7 +19,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="flex flex-row justify-center">
+            <div className="flex flex-row justify-center text-sm text-gray-400">
                 Made With Love &lt;3 by Dhruv and Dhyey
             </div>
 
