@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
     return (
@@ -21,6 +22,10 @@ export default function Page() {
                         <Button className="self-center "> Login </Button>
                     </div>
                 </div>
+            <div className="text-center self-center">
+                <Separator className="my-2 self-center"/>
+                Made with &lt;3 by Dhruv & Dhyey
+            </div>
             </main>
         </>
     )
