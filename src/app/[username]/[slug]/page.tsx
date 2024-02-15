@@ -2,7 +2,7 @@
 
 import { Separator } from "@/components/ui/separator";
 
-export async function getData(username: string, slug: string) {
+async function getData(username: string, slug: string) {
     const post = await fetch(`http://localhost:8000/pages/get-page/${username}/${slug}`).then((res) => res.json());
     console.log(post)
     const author = await fetch(`http://localhost:8000/user/${post.user_id.$oid}`).then((res) => res.json());
