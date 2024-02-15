@@ -2,6 +2,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
 export default function Page() {
@@ -21,9 +22,13 @@ export default function Page() {
                         <Input placeholder="Enter Email" id="email" />
                         <Label htmlFor="password"> Password </Label>
                         <Input placeholder="Enter Password" id="password" />
-                        <Link href="/login" className={buttonVariants({variant: "link"})}>Already a User ?</Link>
+                        <Link href="/login" className={buttonVariants({ variant: "link" })}>Already a User ?</Link>
                         <Button className="self-center"> Login </Button>
                     </div>
+                </div>
+                <div className="text-center self-center">
+                    <Separator className="my-2 self-center" />
+                    Made with &lt;3 by Dhruv & Dhyey
                 </div>
             </main>
         </>
