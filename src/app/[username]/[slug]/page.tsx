@@ -1,7 +1,5 @@
 "use client"
 
-import { Separator } from "@/components/ui/separator";
-
 async function getData(username: string, slug: string) {
     const post = await fetch(`http://localhost:8000/pages/get-page/${username}/${slug}`).then((res) => res.json());
     console.log(post)
