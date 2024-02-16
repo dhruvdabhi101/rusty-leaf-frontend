@@ -1,11 +1,20 @@
+"use client"
 import { buttonVariants } from "@/components/ui/button"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Page() {
+    const { push } = useRouter();
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            push("/login")
+        }
+    }, [])
     return (
         <>
             <main className="flex min-h-screen flex-col  p-10 dark:bg-black">

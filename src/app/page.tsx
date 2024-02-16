@@ -2,8 +2,16 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+    const { push } = useRouter();
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            push("/login")
+        }
+    }, [])
     return (
         <main className="flex min-h-screen flex-col justify-between p-10 dark:bg-black">
             <div className="flex flex-row justify-end">
