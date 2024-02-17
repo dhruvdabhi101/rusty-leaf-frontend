@@ -8,8 +8,8 @@ import { useEffect } from "react";
 export default function Home() {
     const { push } = useRouter();
     useEffect(() => {
-        if (!localStorage.getItem("token")) {
-            push("/login")
+        if (localStorage.getItem("token")) {
+            push("/home")
         }
     }, [])
     return (
