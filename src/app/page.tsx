@@ -1,4 +1,5 @@
 "use client"
+import { DotBackgroundDemo } from "@/components/GridSmallBackgroundDemo";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +18,8 @@ export default function Home() {
             <div className="flex flex-row justify-end">
                 <Link href={"/register"}><Button>Sign Up</Button></Link>
             </div>
-            <div className="flex flex-col justify-center items-center gap-7">
+            <DotBackgroundDemo>
+            <div className="flex flex-col justify-center items-center gap-7 w-full h-full">
                 <div className="flex flex-col items-center justify-center gap-5">
                     <p className="font-semibold text-4xl md:text-6xl lg:text-7xl"> Rusty-Leaf </p>
                     <p className="font-light text-gray-400 text-md md:text-xl text-center">Best Way to deploy your darkdown with a single click of a button</p>
@@ -27,6 +29,7 @@ export default function Home() {
                     <Button variant={"ghost"} className="bg-black hover:text-black hover:bg-white">Learn More &rarr;</Button>
                 </div>
             </div>
+            </DotBackgroundDemo>
 
             <div className="flex flex-row justify-center text-sm text-gray-400">
                 Made With Love &lt;3 by Dhruv and Dhyey

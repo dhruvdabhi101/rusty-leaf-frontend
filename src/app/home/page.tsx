@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/drawer"
 import axios from "axios";
 import { makeHeader } from "@/action";
+import { DotBackgroundDemo, GridSmallBackgroundDemo } from "@/components/GridSmallBackgroundDemo";
 
 type PageType = {
     slug: string,
@@ -55,11 +56,11 @@ export default function Home() {
 
     }
     return (
-        <main className="flex min-h-screen flex-col p-10 dark:bg-black gap-4 ">
+        <main className="flex min-h-screen w-full h-full flex-col p-10 dark:bg-black gap-4 ">
             <Navbar />
             <div className="flex flex-col gap-4 md:flex-row items-center md:justify-center flex-wrap">
                 {pages && pages.map((page, i) => {
-                    return <PageCard key={i} params={page}/>
+                    return <PageCard key={i} params={page} />
                 })}
             </div>
             <div className="text-center self-center">
@@ -67,6 +68,5 @@ export default function Home() {
                 Made with &lt;3 by Dhruv & Dhyey
             </div>
         </main>
-
     )
 }
