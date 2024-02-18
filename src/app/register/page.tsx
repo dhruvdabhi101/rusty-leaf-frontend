@@ -11,12 +11,11 @@ import { useEffect } from "react";
 export default function Page() {
     const { push } = useRouter();
     useEffect(() => {
-        if (!localStorage.getItem("token")) {
-            push("/login")
+        if (localStorage.getItem("token") != null) {
+            push("/home")
         }
-    }, [])
+    }, [push])
     return (
-        <>
             <main className="flex min-h-screen flex-col  p-10 dark:bg-black">
                 <div className="flex flex-col p-5 justify-center items-center gap-10">
                     <div className="flex flex-col justify-center items-center text-4xl font-extrabold">
@@ -32,7 +31,7 @@ export default function Page() {
                         <Label htmlFor="password"> Password </Label>
                         <Input placeholder="Enter Password" id="password" />
                         <Link href="/login" className={buttonVariants({ variant: "link" })}>Already a User ?</Link>
-                        <Button className="self-center"> Login </Button>
+                        <Button className="self-center"> Register </Button>
                     </div>
                 </div>
                 <div className="text-center self-center">
@@ -40,6 +39,5 @@ export default function Page() {
                     Made with &lt;3 by Dhruv & Dhyey
                 </div>
             </main>
-        </>
     )
 }

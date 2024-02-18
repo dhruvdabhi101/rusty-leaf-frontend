@@ -36,7 +36,7 @@ export default function Home() {
             push("/login")
         }
         getUserPages().then(() => "success").catch((err) => console.error(err))
-    }, [])
+    }, [push])
 
     async function getUserPages() {
         try {
