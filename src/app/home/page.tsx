@@ -18,14 +18,16 @@ import axios from "axios";
 import { makeHeader } from "@/action";
 import { DotBackgroundDemo, GridSmallBackgroundDemo } from "@/components/GridSmallBackgroundDemo";
 
+
+type idObject = {
+    "$oid": string
+}
 type PageType = {
     slug: string,
     published: boolean,
     title: string,
     content: string,
-    _id: {
-        "oid": string
-    },
+    _id: idObject,
 };
 
 export default function Home() {
@@ -50,6 +52,7 @@ export default function Home() {
                 headers: headers
             });
             setPages(data.data);
+            console.log(data.data);
         } catch (err) {
             console.error(err);
         }
