@@ -13,7 +13,7 @@ export default function Page() {
                 width={"50%"}
                 theme="vs-dark"
                 defaultLanguage="darkdown"
-                onChange={(e) => setTextData(converter.convertToHtml(e))}
+                onChange={(e) => setTextData(converter.convertToHtml(e ?? ""))}
                 path="main.dd"
             />
                 <div className="w-full">
