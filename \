@@ -1,11 +1,11 @@
 "use client"
-import Editor from "@monaco-editor/react"
+import Editor, { Monaco } from "@monaco-editor/react"
 import { useEffect, useState } from "react"
 import { Converter } from "darkdown-ts"
 import { redirect } from "next/navigation"
 import axios from "axios"
 import { makeHeader } from "@/action"
-import { Button } from "@/components/ui/button"
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 
 type idObject = {
     "$oid": string
@@ -19,12 +19,12 @@ type PageType = {
 };
 
 export default function Page({ params }: { params: { id: string } }) {
-    const [page, setPage] = useState<PageType>({} as PageType);
+    const [page, setPage] = useState<PageType>({});
 
     useEffect(() => {
         if (!localStorage.getItem("token")) {
             // push("/login");
-            redirect("/login");
+            redirect("/login")
         }
         getData().then(() => console.log("success")).catch(err => console.error(err));
     }, [])
@@ -36,7 +36,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 headers: headers
             });
             console.log(data.data);
-            setPage(data.data);
+            setPage(data.data)
         }
     }
 
@@ -45,11 +45,12 @@ export default function Page({ params }: { params: { id: string } }) {
     return (
         <>
             <div className="flex flex-col h-full w-full">
-                <div className="flex flex-row justify-between items-center p-3">
-                <div className="font-bold text-2xl"> {page.title} </div>
-                    <Button className="w-fit h-fit"> Save </Button>
-                </div>
-                <div className="flex flex-row w-full h-full pt-5 gap-4">
+                <div> {page.title} </div>
+                <ResizablePanelGroup
+                    direction="vertical"
+                    className="flex flex-row w-full h-full pt-5 gap-4"
+                    >
+                        <ResizablePanel>
                     <Editor
                         height={"100vh"}
                         width={"50%"}
@@ -59,6 +60,9 @@ export default function Page({ params }: { params: { id: string } }) {
                         onChange={(e) => setPage({...page, content: e ?? ""})}
                         path="main.dd"
                     />
+                    </ResizablePanel>
+                        <ResizableHandle/>
+                        <ResizablePanel>
                     <div className="w-[50%]">
                         Preview
                         <div className='p-4
@@ -71,7 +75,8 @@ export default function Page({ params }: { params: { id: string } }) {
                             </p>
                         </div>
                     </div>
-                </div>
+                    </ResizablePanel>
+                </ResizablePanelGroup>
             </div>
         </>
     )

@@ -2,21 +2,11 @@
 import PageCard from "@/components/Card";
 import Navbar from "@/components/Navbar";
 import { Separator } from "@/components/ui/separator";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer"
 import axios from "axios";
 import { makeHeader } from "@/action";
-import { DotBackgroundDemo, GridSmallBackgroundDemo } from "@/components/GridSmallBackgroundDemo";
+// mongodb+srv://ddhruv101:FBPmsnwSjgEej7r0@cluster0.mu4ixjp.mongodb.net/?retryWrites=true&w=majority
 
 
 type idObject = {
@@ -32,20 +22,18 @@ type PageType = {
 
 export default function Home() {
     const [pages, setPages] = useState<PageType[]>([])
-    const { push } = useRouter();
     useEffect(() => {
         if (!localStorage.getItem("token")) {
-            push("/login")
+            redirect("/login")
         }
         getUserPages().then(() => "success").catch((err) => console.error(err))
-    }, [push])
+    }, [])
 
     async function getUserPages() {
         try {
             const token = localStorage.getItem("token");
             if (token === null) {
-                push("/login");
-                return;
+                redirect("/login");
             }
             const headers = makeHeader(token);
             const data = await axios.get("http://127.0.0.1:8000/pages/get-all", {

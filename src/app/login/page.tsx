@@ -16,7 +16,8 @@ export default function Page() {
 
     useEffect(() => {
         if(localStorage.getItem("token") != null) {
-            push("/home")
+//            push("/home")
+            redirect("/home");
         }
     }, [push])
 
