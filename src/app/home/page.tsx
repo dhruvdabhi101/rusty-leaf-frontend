@@ -6,7 +6,9 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { makeHeader } from "@/action";
-// mongodb+srv://ddhruv101:FBPmsnwSjgEej7r0@cluster0.mu4ixjp.mongodb.net/?retryWrites=true&w=majority
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Pencil1Icon } from "@radix-ui/react-icons"
 
 
 type idObject = {
@@ -44,19 +46,26 @@ export default function Home() {
         } catch (err) {
             console.error(err);
         }
-
     }
     return (
         <main className="flex min-h-screen w-full h-full flex-col p-10 dark:bg-black gap-4 ">
             <Navbar />
-            <div className="flex flex-col gap-4 md:flex-row items-center md:justify-center flex-wrap">
+            <div className="w-full">
+                <Button asChild>
+                    <Link className="w-fit flex flex-row gap-2 " href={"/home/page/create"} >
+                        <Pencil1Icon />
+                        Create Page
+                    </Link>
+                </Button>
+            </div>
+            <div className="self-center grid grid-cols-1 gap-y-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-8 md:gap-4 content-center">
                 {pages && pages.map((page, i) => {
                     return <PageCard key={i} params={page} />
                 })}
             </div>
             <div className="text-center self-center">
                 <Separator className="mb-2" />
-                Made with &lt;3 by Dhruv & Dhyey
+                Made with &lt;3 by Dhruv
             </div>
         </main>
     )

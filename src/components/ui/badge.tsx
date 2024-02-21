@@ -37,7 +37,7 @@ function PrefferedBadge({ bool }: { bool: boolean }) {
     if (bool === true) {
         return (<Badge variant={"outline"} className="border-green-400 w-fit text-clip hover:bg-green-400 hover:text-black">Active</Badge>)
     } else {
-        return (<Badge variant={"outline"} className="border-red-400 w-fit text-clip hover:bg-red-400 hover:text-black">InActive</Badge>)
+        return (<Badge variant={"outline"} className="border-red-400 w-fit text-clip hover:bg-red-400 hover:text-black">Inactive</Badge>)
     }
 }
 export { Badge, badgeVariants, PrefferedBadge }

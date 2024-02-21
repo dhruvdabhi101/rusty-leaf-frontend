@@ -10,40 +10,23 @@ import { Cross2Icon, Pencil1Icon } from "@radix-ui/react-icons"
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 
-type idObject = {
-    "$oid": string
-}
 type PageType = {
     slug: string,
     published: boolean,
     title: string,
     content: string,
-    _id: idObject,
 };
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function Page() {
 
     const [page, setPage] = useState<PageType>({} as PageType);
-    const [titleChange, setTitleChange] = useState(false)
 
     useEffect(() => {
         if (!localStorage.getItem("token")) {
             // push("/login");
             redirect("/login");
         }
-        getData().then(() => console.log("success")).catch(err => console.error(err));
     }, [])
-    async function getData() {
-        const token = localStorage.getItem("token");
-        if (token) {
-            const headers = makeHeader(token);
-            const data = await axios.get(`http://127.0.0.1:8000/pages/get-page/${params.id}`, {
-                headers: headers
-            });
-            console.log(data.data);
-            setPage(data.data);
-        }
-    }
 
     async function submitForm() {
         const token = localStorage.getItem("token");
@@ -55,7 +38,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 slug: page.slug,
                 published: page.published
             };
-            const data = await axios.put(`http://127.0.0.1:8000/pages/update-page/${params.id}`, reqObj, {
+            const data = await axios.post(`http://127.0.0.1:8000/pages/create-page`, reqObj, {
                 headers: headers
             });
             console.log(data.data);
@@ -67,8 +50,10 @@ export default function Page({ params }: { params: { id: string } }) {
         <>
             <div className="flex flex-col h-full w-full">
                 <div className="flex flex-row justify-between items-center p-3">
-                    {!titleChange && (<div className="font-bold text-2xl"> {page.title} <Button variant={"ghost"} onClick={() => setTitleChange(true)}> <Pencil1Icon /> </Button></div>)}
-                    {titleChange && <div className="flex flex-row"> <Input value={page.title} className="font-bold text-2xl border-[1px] border-white" onChange={(e) => setPage({ ...page, title: e.target.value })} /> <Button variant={"ghost"} onClick={() => setTitleChange(false)}><Cross2Icon /> </Button> </div>}
+                    <div className="flex flex-col gap-3">
+                        <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-xl font-bold">Title:</div>  <Input value={page.title} className="text-lg border-[1px] border-white placeholder:text-white rounded-lg" onChange={(e) => setPage({ ...page, title: e.target.value })} placeholder="Enter Title" />  </div>
+                        <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-xl font-bold">Slug:</div>  <Input value={page.slug} className="text-lg border-[1px] border-white placeholder:text-white rounded-lg" onChange={(e) => setPage({ ...page, slug: e.target.value })} placeholder="Enter Slug" />  </div>
+                    </div>
                     <Button className="w-fit h-fit" onClick={submitForm}> Save </Button>
                 </div>
                 <div className="flex flex-row p-3 gap-2"> Published: <Switch checked={page.published} onClick={() => setPage({ ...page, published: !page.published })} /> </div>

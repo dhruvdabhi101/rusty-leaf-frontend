@@ -57,7 +57,7 @@ export default function Page() {
                 </div>
                 <div className="text-center self-center">
                     <Separator className="my-2 self-center" />
-                    Made with &lt;3 by Dhruv & Dhyey
+                    Made with &lt;3 by Dhruv
                 </div>
             </main>
     )

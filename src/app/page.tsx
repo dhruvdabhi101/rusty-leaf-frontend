@@ -30,7 +30,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="flex flex-row justify-center text-sm text-gray-400">
-                    Made With Love &lt;3 by Dhruv and Dhyey
+                    Made With Love &lt;3 by Dhruv
                 </div>
             </main>
         </DotBackgroundDemo>

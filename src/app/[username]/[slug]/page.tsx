@@ -1,9 +1,10 @@
 "use client"
+import { redirect } from "next/navigation";
 
 async function getData(username: string, slug: string) {
-    const post = await fetch(`http://localhost:8000/pages/get-page/${username}/${slug}`).then((res) => res.json());
+    const post = await fetch(`http://localhost:8000/pages/get-page/${username}/${slug}`).then((res) => res.json()).catch((err) => redirect("/not-found"));
     console.log(post)
-    const author = await fetch(`http://localhost:8000/user/${post.user_id.$oid}`).then((res) => res.json());
+    const author = await fetch(`http://localhost:8000/user/${post.user_id.$oid}`).then((res) => res.json()).catch(() => redirect("/not-found"));
     console.log(author)
     return { post, author };
 }
