@@ -6,10 +6,10 @@ import { redirect } from "next/navigation"
 import axios from "axios"
 import { makeHeader } from "@/action"
 import { Button } from "@/components/ui/button"
-import { Cross2Icon, Pencil1Icon } from "@radix-ui/react-icons"
+import { Cross2Icon, DownloadIcon, Pencil1Icon } from "@radix-ui/react-icons"
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
-import { toast } from "@/components/ui/use-toast"
+import { toast, useToast } from "@/components/ui/use-toast"
 
 type PageType = {
     slug: string,
@@ -19,7 +19,7 @@ type PageType = {
 };
 
 export default function Page() {
-
+    const {toast} = useToast();
     const [page, setPage] = useState<PageType>({} as PageType);
 
     useEffect(() => {
@@ -42,9 +42,11 @@ export default function Page() {
             const data = await axios.post(`http://127.0.0.1:8000/pages/create-page`, reqObj, {
                 headers: headers
             });
-            if(data.status === 200) {
-                redirect("/home")
-            }
+            const user = localStorage.getItem("user");
+            toast({
+                title: "Page Saved Successfully",
+                description: "Page saved successfully at " + `http://localhost:3000/${user}/${page.slug}`
+            })
             console.log(data.data);
         }
     }
@@ -52,16 +54,16 @@ export default function Page() {
     const converter = new Converter();
     return (
         <>
-            <div className="flex flex-col h-full w-full">
-                <div className="flex flex-row justify-between items-center p-3">
+            <div className="flex flex-col h-full w-full p-6">
+                <div className="flex flex-row justify-between items-center p-6">
                     <div className="flex flex-col gap-3">
                         <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-lg font-semibold">Title:</div>  <Input value={page.title} className="rounded-lg h-8" onChange={(e) => setPage({ ...page, title: e.target.value })}/>  </div>
                         <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-lg font-semibold">Slug:</div>  <Input value={page.slug} className="rounded-lg h-8" onChange={(e) => setPage({ ...page, slug: e.target.value })}/>  </div>
                     </div>
-                    <Button className="w-fit h-fit" onClick={submitForm}> Save </Button>
+                    <Button className="w-fit h-fit gap-2" onClick={submitForm}> Save <DownloadIcon/>  </Button>
                 </div>
-                <div className="flex flex-row p-3 gap-2"> Published: <Switch checked={page.published} onClick={() => setPage({ ...page, published: !page.published })} /> </div>
-                <div className="flex flex-row w-full h-full pt-5 gap-4">
+                <div className="flex flex-row p-3 gap-3"> Published: <Switch checked={page.published} onClick={() => setPage({ ...page, published: !page.published })} /> </div>
+                <div className="flex flex-row w-full h-full pt-5 gap-3">
                     <Editor
                         height={"100vh"}
                         width={"50%"}

@@ -1,4 +1,7 @@
+import Link from "next/link";
+
 export default function Navbar() {
+    const username = localStorage.getItem("user");
     return (
         <>
             <div className="h-full w-full flex flex-row justify-center items-center ">
@@ -7,7 +10,9 @@ export default function Navbar() {
                         Rusty-Leaf
                     </div>
                     <div className="text-lg font-thin">
-                        Hello Dhruv...
+                        <Link href={"#"}>
+                            Hello {username ? username : ""}
+                        </Link>
                     </div>
                 </div>
             </div>
