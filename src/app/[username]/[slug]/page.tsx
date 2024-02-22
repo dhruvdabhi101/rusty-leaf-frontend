@@ -2,9 +2,15 @@
 import { redirect } from "next/navigation";
 
 async function getData(username: string, slug: string) {
-    const post = await fetch(`http://localhost:8000/pages/get-page/${username}/${slug}`).then((res) => res.json()).catch((err) => redirect("/not-found"));
+    let post = await fetch(`http://localhost:8000/pages/get-page/${username}/${slug}`);
     console.log(post)
-    const author = await fetch(`http://localhost:8000/user/${post.user_id.$oid}`).then((res) => res.json()).catch(() => redirect("/not-found"));
+    if(post.status !== 200) {
+        redirect("/not-found")
+    } else {
+        post = await post.json();
+    }
+    
+    const author = await fetch(`http://localhost:8000/user/${post.user_id.$oid}`);
     console.log(author)
     return { post, author };
 }
