@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Cross2Icon, Pencil1Icon } from "@radix-ui/react-icons"
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
+import { toast } from "@/components/ui/use-toast"
 
 type PageType = {
     slug: string,
@@ -41,6 +42,9 @@ export default function Page() {
             const data = await axios.post(`http://127.0.0.1:8000/pages/create-page`, reqObj, {
                 headers: headers
             });
+            if(data.status === 200) {
+                redirect("/home")
+            }
             console.log(data.data);
         }
     }
@@ -51,8 +55,8 @@ export default function Page() {
             <div className="flex flex-col h-full w-full">
                 <div className="flex flex-row justify-between items-center p-3">
                     <div className="flex flex-col gap-3">
-                        <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-xl font-bold">Title:</div>  <Input value={page.title} className="text-lg border-[1px] border-white placeholder:text-white rounded-lg" onChange={(e) => setPage({ ...page, title: e.target.value })} placeholder="Enter Title" />  </div>
-                        <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-xl font-bold">Slug:</div>  <Input value={page.slug} className="text-lg border-[1px] border-white placeholder:text-white rounded-lg" onChange={(e) => setPage({ ...page, slug: e.target.value })} placeholder="Enter Slug" />  </div>
+                        <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-lg font-semibold">Title:</div>  <Input value={page.title} className="rounded-lg h-8" onChange={(e) => setPage({ ...page, title: e.target.value })}/>  </div>
+                        <div className="flex flex-row gap-2 align-middle items-center"> <div className="text-lg font-semibold">Slug:</div>  <Input value={page.slug} className="rounded-lg h-8" onChange={(e) => setPage({ ...page, slug: e.target.value })}/>  </div>
                     </div>
                     <Button className="w-fit h-fit" onClick={submitForm}> Save </Button>
                 </div>

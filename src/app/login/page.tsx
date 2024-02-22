@@ -30,6 +30,7 @@ export default function Page() {
             if (data.status === 200) {
                 console.log(data.data.token);
                 localStorage.setItem("token", data.data.token);
+                localStorage.setItem("user", username);
                 console.log(data)
                 push("/home")
             }
