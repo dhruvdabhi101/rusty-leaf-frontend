@@ -23,10 +23,15 @@ type PageType = {
 };
 
 export default function Home() {
-    const [pages, setPages] = useState<PageType[]>([])
+    const [pages, setPages] = useState<PageType[]>([]);
+    const [user, setUser] = useState("");
     useEffect(() => {
         if (!localStorage.getItem("token")) {
             redirect("/login")
+        }
+        if(localStorage.getItem("user")) {
+            const username = localStorage.getItem("user");
+            setUser(username ? username : "");
         }
         getUserPages().then(() => "success").catch((err) => console.error(err))
     }, [])
@@ -49,7 +54,7 @@ export default function Home() {
     }
     return (
         <main className="flex min-h-screen w-full h-full flex-col p-10 dark:bg-black gap-4 ">
-            <Navbar />
+            <Navbar username={`${user}`}/>
             <div className="w-full">
                 <Button asChild>
                     <Link className="w-fit flex flex-row gap-2 " href={"/home/page/create"} >

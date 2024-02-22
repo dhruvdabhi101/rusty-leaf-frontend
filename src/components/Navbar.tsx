@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-export default function Navbar() {
-    const username = localStorage.getItem("user");
+export default function Navbar({ username }: { username: string }) {
     return (
         <>
             <div className="h-full w-full flex flex-row justify-center items-center ">
