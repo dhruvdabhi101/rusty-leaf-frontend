@@ -25,6 +25,7 @@ export default async function Page({ params }: { params: { username: string, slu
 
             <div>
                 <div className='
+                            prose-h1:text-[#ffc799]
             p-4
                 w-fit
                 prose-h1:text-2xl prose-h1:font-bold

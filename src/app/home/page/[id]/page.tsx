@@ -111,6 +111,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     <div className="w-[50%]">
                         Preview
                         <div className='p-4
+                            prose-h1:text-[#ffc799]
                 w-fit
                 prose-h1:text-2xl prose-h1:font-bold
                 prose-li:text-md prose-li:font-thin
