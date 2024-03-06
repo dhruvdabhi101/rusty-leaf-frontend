@@ -114,7 +114,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             prose-h1:text-[#ffc799]
                 w-fit
                 prose-h1:text-2xl prose-h1:font-bold
-                prose-li:text-md prose-li:font-thin
+                prose-li:text-md prose-li:font-thin prose-li:list-disc
                 prose-a:text-neutral-400 prose-a:hover:underline prose-a:italic
             tracking-wider leading-7'>
                             <p dangerouslySetInnerHTML={{ __html: converter.convertToHtml(page.content ?? "") }}>

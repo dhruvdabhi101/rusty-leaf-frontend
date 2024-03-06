@@ -10,10 +10,10 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Pencil1Icon } from "@radix-ui/react-icons"
 
-
 type idObject = {
     "$oid": string
 }
+
 type PageType = {
     slug: string,
     published: boolean,
