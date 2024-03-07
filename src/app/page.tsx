@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
+import StarsCanvas from "@/components/StarBackground";
 export default function Home() {
     const { push } = useRouter();
     useEffect(() => {
@@ -14,7 +14,7 @@ export default function Home() {
         }
     }, [])
     return (
-        <DotBackgroundDemo>
+        
             <main className="flex min-h-screen flex-col justify-between p-10">
                 <div className="flex flex-row justify-end">
                     <Link href={"/register"}><Button>Sign Up</Button></Link>
@@ -33,6 +33,6 @@ export default function Home() {
                     Made With Love &lt;3 by Dhruv & Dhyey
                 </div>
             </main>
-        </DotBackgroundDemo>
+      
     );
 }

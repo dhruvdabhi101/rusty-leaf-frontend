@@ -33,6 +33,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-resizable-panels": "^2.0.9",
+    "recharts": "^2.12.1",
     "stars-canvas": "^0.0.4",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
