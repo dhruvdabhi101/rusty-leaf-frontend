@@ -10,56 +10,57 @@ import axios from "axios";
 import { redirect, useRouter } from "next/navigation";
 
 export default function Page() {
-    const { push } = useRouter();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+  const { push } = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    useEffect(() => {
-        if(localStorage.getItem("token") != null) {
-//            push("/home")
-            redirect("/home");
-        }
-    }, [push])
-
-    async function login() {
-        try {
-            const data = await axios.post("http://localhost:8000/login", {
-                "username": username,
-                "password": password
-            });
-            if (data.status === 200) {
-                console.log(data.data.token);
-                localStorage.setItem("token", data.data.token);
-                localStorage.setItem("user", username);
-                console.log(data)
-                push("/home")
-            }
-        } catch (err) {
-            console.error(err);
-        }
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      //            push("/home")
+      redirect("/home");
     }
+  }, [push])
 
-    return (
-        <>
-            <main className="flex min-h-screen flex-col  p-10 dark:bg-black">
-                <div className="flex flex-col p-5 justify-center items-center gap-10">
-                    <div className="flex flex-col justify-center items-center text-4xl font-extrabold">
-                        Login
-                    </div>
-                    <div className="flex flex-col justify-center items-start border-neutral-800 border-[1px] rounded-lg w-[80%] h-full gap-5 p-5 md:w-[60%] lg:w-[50%] xl:w-[40%]">
-                        <Label htmlFor="username"> Username </Label>
-                        <Input placeholder="Enter Username" id="username" onChange={(e) => setUsername(e.target.value)} />
-                        <Label htmlFor="password"> Password </Label>
-                        <Input placeholder="Enter Password" id="password" onChange={(e) => setPassword(e.target.value)} />
-                        <Link href="/register" className={buttonVariants({ variant: "link" })}>New User ?</Link>
-                        <Button className="self-center" onClick={login}> Login </Button>
-                    </div>
-                </div>
-                <div className="text-center self-center">
-                    <Separator className="my-2 self-center" />
-                    Made with &lt;3 by Dhruv
-                </div>
-            </main>
-        </>
-    )
+  async function login() {
+    try {
+      const data = await axios.post("http://localhost:8000/login", {
+        "username": username,
+        "password": password
+      });
+      if (data.status === 200) {
+        console.log(data.data.token);
+        console.log(data.data);
+        localStorage.setItem("token", data.data.token);
+        localStorage.setItem("user", username);
+        console.log(data)
+        push("/home")
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  return (
+    <>
+      <main className="flex min-h-screen flex-col  p-10 dark:bg-black">
+        <div className="flex flex-col p-5 justify-center items-center gap-10">
+          <div className="flex flex-col justify-center items-center text-4xl font-extrabold">
+            Login
+          </div>
+          <div className="flex flex-col justify-center items-start border-neutral-800 border-[1px] rounded-lg w-[80%] h-full gap-5 p-5 md:w-[60%] lg:w-[50%] xl:w-[40%]">
+            <Label htmlFor="username"> Username </Label>
+            <Input placeholder="Enter Username" id="username" onChange={(e) => setUsername(e.target.value)} />
+            <Label htmlFor="password"> Password </Label>
+            <Input placeholder="Enter Password" id="password" onChange={(e) => setPassword(e.target.value)} />
+            <Link href="/register" className={buttonVariants({ variant: "link" })}>New User ?</Link>
+            <Button className="self-center" onClick={login}> Login </Button>
+          </div>
+        </div>
+        <div className="text-center self-center">
+          <Separator className="my-2 self-center" />
+          Made with &lt;3 by Dhruv
+        </div>
+      </main>
+    </>
+  )
 }
