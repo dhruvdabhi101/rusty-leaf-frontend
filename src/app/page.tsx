@@ -25,8 +25,8 @@ export default function Home() {
                         <p className="font-light text-gray-400 text-md md:text-xl text-center">Best Way to deploy your darkdown with a single click of a button</p>
                     </div>
                     <div className="flex flex-col gap-6 md:flex-row">
-                        <Button variant={"outline"} className="bg-black hover:text-black hover:bg-white "> Let's Deploy </Button>
-                        <Button variant={"ghost"} className="bg-black hover:text-black hover:bg-white">Learn More &rarr;</Button>
+                        <Link href={"/login"}><Button variant={"outline"} className="bg-black hover:text-black hover:bg-white "> Let's Deploy </Button></Link>
+                        <Link href={"https://dhruvdabhi101.github.io/darkdown-docs/chapter_1.html"}><Button variant={"ghost"} className="bg-black hover:text-black hover:bg-white">Learn More &rarr;</Button></Link>
                     </div>
                 </div>
                 <div className="flex flex-row justify-center text-sm text-gray-400">

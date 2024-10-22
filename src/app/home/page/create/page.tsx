@@ -73,6 +73,8 @@ export default function Page() {
                         onChange={(e) => setPage({ ...page, content: e ?? "" })}
                         path="main.dd"
                     />
+                    {/* Monaco Editor  */}
+                    {/* Typescript custom library, darkdown -> HTML parse */}
                     <div className="w-[50%]">
                         Preview
                         <div className='p-4
@@ -80,7 +82,10 @@ export default function Page() {
                 prose-h1:text-2xl prose-h1:font-bold
                 prose-li:text-md prose-li:font-thin
                 prose-a:text-neutral-400 prose-a:hover:underline prose-a:italic
-            tracking-wider leading-7'>
+
+                prose-li:list-disc
+
+                tracking-wider leading-7'>
                             <p dangerouslySetInnerHTML={{ __html: converter.convertToHtml(page.content ?? "") }}>
                             </p>
                         </div>

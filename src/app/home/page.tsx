@@ -13,7 +13,6 @@ import { Pencil1Icon } from "@radix-ui/react-icons"
 type idObject = {
     "$oid": string
 }
-
 type PageType = {
     slug: string,
     published: boolean,
@@ -70,7 +69,7 @@ export default function Home() {
             </div>
             <div className="text-center self-center">
                 <Separator className="mb-2" />
-                Made with &lt;3 by Dhruv
+                Made with &lt;3 by Dhruv & Dhyey
             </div>
         </main>
     )
