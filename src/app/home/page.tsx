@@ -69,7 +69,7 @@ export default function Home() {
             </div>
             <div className="text-center self-center">
                 <Separator className="mb-2" />
-                Made with &lt;3 by Dhruv & Dhyey
+                Made with &lt;3 by Dhruv 
             </div>
         </main>
     )
