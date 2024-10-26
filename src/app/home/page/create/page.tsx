@@ -39,7 +39,7 @@ export default function Page() {
                 slug: page.slug,
                 published: page.published
             };
-            const data = await axios.post(`http://127.0.0.1:8000/pages/create-page`, reqObj, {
+            const data = await axios.post(`http://rusty-leaf-backend.shuttleapp.rs//pages/create-page`, reqObj, {
                 headers: headers
             });
             const user = localStorage.getItem("user");

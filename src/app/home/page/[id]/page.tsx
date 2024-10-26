@@ -41,7 +41,7 @@ export default function Page({ params }: { params: { id: string } }) {
     const token = localStorage.getItem("token");
     if (token) {
       const headers = makeHeader(token);
-      const data = await axios.get(`http://127.0.0.1:8000/pages/get-page/${params.id}`, {
+      const data = await axios.get(`http://rusty-leaf-backend.shuttleapp.rs/pages/get-page/${params.id}`, {
         headers: headers
       });
       console.log(data.data);
@@ -53,7 +53,7 @@ export default function Page({ params }: { params: { id: string } }) {
     const token = localStorage.getItem("token");
     if (token) {
       const headers = makeHeader(token);
-      const data = await axios.delete(`http://127.0.0.1:8000/pages/delete-page/${params.id}`, {
+      const data = await axios.delete(`http://rusty-leaf-backend.shuttleapp.rs/pages/delete-page/${params.id}`, {
         headers: headers
       });
       if (data.status === 200) {
@@ -81,7 +81,7 @@ export default function Page({ params }: { params: { id: string } }) {
         slug: page.slug,
         published: page.published
       };
-      const data = await axios.put(`http://127.0.0.1:8000/pages/update-page/${params.id}`, reqObj, {
+      const data = await axios.put(`http://rusty-leaf-backend.shuttleapp.rs/pages/update-page/${params.id}`, reqObj, {
         headers: headers
       });
       if (data.status === 200) {

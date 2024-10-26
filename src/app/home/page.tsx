@@ -42,7 +42,7 @@ export default function Home() {
                 redirect("/login");
             }
             const headers = makeHeader(token);
-            const data = await axios.get("http://127.0.0.1:8000/pages/get-all", {
+            const data = await axios.get("http://rusty-leaf-backend.shuttleapp.rs/pages/get-all", {
                 headers: headers
             });
             setPages(data.data);
@@ -69,7 +69,7 @@ export default function Home() {
             </div>
             <div className="text-center self-center">
                 <Separator className="mb-2" />
-                Made with &lt;3 by Dhruv 
+                Made with &lt;3 by Dhruv
             </div>
         </main>
     )
